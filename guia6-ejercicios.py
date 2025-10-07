@@ -332,4 +332,23 @@ def viaje_aristoteles(partida:int) -> None:
     
 viaje_aristoteles(2025)
 
+#Ejercicio 9
 
+def rt(x: int, g: int) -> int:
+    g = g + 1
+    return x + g
+
+print(rt(1, 0))
+print(rt(1, 0))
+print(rt(1, 0))
+
+g: int = 0
+def ro(x: int) -> int:
+    global g
+    g = g + 1
+    return x + g
+
+
+print(ro(1))
+print(ro(1))
+print(ro(1))
