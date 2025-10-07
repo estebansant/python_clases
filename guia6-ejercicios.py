@@ -114,3 +114,108 @@ def es_bisiesto(anio:int)->bool:
     return (anio%4==0) and (anio%400==0 or not anio%100==0)
 
 print("El año ingresado es bisiesto", es_bisiesto(2200))
+
+#Ejercicio 4: Resolver este ejercicio usando las funciones de python min y max
+#1) Definir la funcion peso_pino
+
+def peso_pino(altura:float) -> float:
+    altura_en_cm: float=altura*100
+    if altura_en_cm <=300:
+        peso: float = altura_en_cm*3
+    else:
+        ultimos_metros:float = altura_en_cm - 300
+        peso:float = 3*300 + ultimos_metros*2
+    return peso
+
+print("Peso del pino es:", peso_pino(3.5))
+
+# Los pinos se usan para llevarlos a una fábrica de muebles, a la que le sirven árboles de entre 400 y 1000 kilos, un pino fuera de este rango no le sirve a la fábrica.
+
+#2) Definir la función es_peso_util , recibe un peso en kg y responde si un pino de ese peso le sirve a la fábrica.
+
+# PREGUNTAR COMO ASIGNARLE UN TIPO A UNA FUNCION QUE SE PASA COMO PARAMETRO
+def es_peso_util(peso_pino) -> bool:
+    return (max(399,peso_pino) >= 400) and (min(1001,peso_pino) <= 1000)
+
+print("El peso del pino le sirve a la fabrica:", es_peso_util(peso_pino(1.3333333334)))
+
+# 3) Definir la función sirve_pino , recibe la altura de un pino y responde si un pino de ese peso le sirve a la fábrica.
+
+def sirve_pino(altura: float) -> bool:
+    return ((altura >= 1.3333333333333333334) and (altura <= 3.5))
+
+print("El pino le sirve a la fabrica", sirve_pino(1.5))
+
+# Ejercicio 5: Implementar los siguientes problemas de alternativa condicional (if/else).
+
+# 1)
+
+def devolver_el_doble_si_es_par(n:int)->int:
+    if n%2==0:
+        res: int= n*2
+    else:
+        res: int = n
+    return res
+
+print(devolver_el_doble_si_es_par(40))
+
+# 2)
+
+def devolver_valor_si_es_par_sino_el_que_sigue(n:int) -> int:
+    if n%2==0:
+        return n
+    else:
+        return n+1
+print(devolver_valor_si_es_par_sino_el_que_sigue(39))
+
+#3)
+def devolver_el_doble_si_es_multiplo3_el_triple_si_es_multiplo9(n:int)->int:
+    if n%9==0:
+        return n*3
+    elif n%3==0:
+        return n*2
+    else:
+        return n
+print(devolver_el_doble_si_es_multiplo3_el_triple_si_es_multiplo9(18))
+
+#4) 
+
+def lindo_nombre(nombre: str) -> str:
+    if len(nombre)>=5:
+        msg: str= "Tu nombre tiene muchas letras!"
+    else:
+        msg: str= "Tu nombre tiene menos de 5 caracteres"
+    return msg
+
+print(lindo_nombre("Esteban"))
+
+#5)
+
+def elRango(n:int) -> None:
+    if n<5:
+        print("Menor a 5")
+    elif (n>10 and n<20):
+        print("Entre 10 y 20")
+    elif n>20:
+        print("Mayor a 20")
+    else:
+        print("No hay rango definido")
+
+elRango(12)
+
+#6)
+
+def a_laburar(sexo: str, edad:int) -> None:
+    if (edad <18) or (edad >=60 and sexo=="F"):
+        print("Andá de vacaciones")
+    elif (edad <18) or (edad >=65 and sexo=="M"):
+        print("Andá de vacaciones")
+    else:
+        print("Te toca trabajar")
+
+a_laburar("M",65)
+a_laburar("F",65)
+a_laburar("F",18)
+a_laburar("M",16)
+a_laburar("M",22)
+a_laburar("F",40)
