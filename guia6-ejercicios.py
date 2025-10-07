@@ -219,3 +219,66 @@ a_laburar("F",18)
 a_laburar("M",16)
 a_laburar("M",22)
 a_laburar("F",40)
+
+#Ejercicio 6: Implementar las siguientes funciones usando repetición condicional while:
+
+#1)
+
+def imprimir_1_al_10() -> None:
+    cont = 1
+    while ((cont >=1) and (cont<=10)):
+        print(cont)
+        cont=cont+1
+
+imprimir_1_al_10()
+
+# 2)
+
+def pares_entre_10_40() -> None:
+    cont: int = 10
+    while cont <=40:
+        if cont%2==0:
+            print(cont)
+            cont +=1
+        else:
+            cont +=1
+
+pares_entre_10_40()
+
+#3)
+
+def eco_10()->None:
+    cont = 1
+    while ((cont >=1) and (cont<=10)):
+        print("eco")
+        cont=cont+1
+    
+eco_10()
+
+#4)
+
+def cuenta_regresiva(t:int) -> None:
+    while t >=1:
+        print(t)
+        t: int=t-1
+    print("Despegue!")
+
+cuenta_regresiva(40)
+
+#5)
+
+def viaje_temporal(partida:int,llegada:int) -> None:
+    while partida > llegada:
+        partida: int = partida - 1
+        print("Viajó un año al pasado, estamos en el año:", partida)
+    
+viaje_temporal(2025,2000)
+
+#6)
+
+def viaje_aristoteles(partida:int) -> None:
+    while partida > -384:
+        partida: int = partida - 20
+        print("Viajó 20 años al pasado, estamos en el año:", partida)
+    
+viaje_aristoteles(2025)
