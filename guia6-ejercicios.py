@@ -282,3 +282,54 @@ def viaje_aristoteles(partida:int) -> None:
         print("Viajó 20 años al pasado, estamos en el año:", partida)
     
 viaje_aristoteles(2025)
+
+#Ejercicio 7: Funciones del ejercicio 6 pero usando for num in range (i,f,p)
+
+def imprimir_1_al_10() -> None:
+    for num in range (1,11,1):
+        print(num)
+
+imprimir_1_al_10()
+
+# 2)
+
+def pares_entre_10_40() -> None:
+    for num in range(10,41,2):
+        print(num)
+
+pares_entre_10_40()
+
+#3)
+
+def eco_10()->None:
+    for num  in range (1,11,1):
+        print("eco")
+    
+eco_10()
+
+#4)
+
+def cuenta_regresiva(t:int) -> None:
+    for num in range (t,0,-1):
+        print(num)
+    print("Despegue!")
+
+cuenta_regresiva(40)
+
+#5)
+
+def viaje_temporal(partida:int,llegada:int) -> None:
+    for num in range (partida, llegada-1,-1):
+        print("Viajó un año al pasado, estamos en el año:", num)
+    
+viaje_temporal(2025,2000)
+
+#6)
+
+def viaje_aristoteles(partida:int) -> None:
+    for num in range(partida-20, -384-20,-20):
+        print("Viajó 20 años al pasado, estamos en el año:", num)
+    
+viaje_aristoteles(2025)
+
+
