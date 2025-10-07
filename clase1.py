@@ -1,3 +1,5 @@
+# Para activar el ambiente de desarrollo hacer: source ruta/bin/activate
+
 import math
 import numpy as np
 

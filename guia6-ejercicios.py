@@ -1,3 +1,4 @@
+# Para activar el ambiente de desarrollo hacer: source ruta/bin/activate
 # Ejercicio 1: Definir las siguientes funciones y procedimientos:
 
 import numpy as np
@@ -86,3 +87,30 @@ def cantidad_de_pizzas(comensales:int, min_cant_de_porciones:int) -> int:
     return res
 
 print("La cantidad de pizzas necesarias para que todos coman es:", cantidad_de_pizzas(8,3))
+
+# Ejercicio 3: Resuelva los siguientes ejercicios utilizando los operadores lógicos and, or, not . No use if.
+
+#1)
+def alguno_es_0(n1:int,n2:int) -> bool:
+    return n1==0 or n2==0
+
+print("Alguno es cero:", alguno_es_0(0,2))
+
+#2)
+def ambos_son_0(n1:int,n2:int) -> bool:
+    return n1==0 and n2==0
+
+print("Ambos son cero:", ambos_son_0(1,0))
+
+#3)
+def es_nombre_largo(nombre: str) -> bool:
+    return (3 <= len(nombre) and len(nombre) <= 8)
+
+print(es_nombre_largo("Juan"))
+
+#4)
+
+def es_bisiesto(anio:int)->bool:
+    return (anio%4==0) and (anio%400==0 or not anio%100==0)
+
+print("El año ingresado es bisiesto", es_bisiesto(2200))
