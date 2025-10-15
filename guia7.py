@@ -8,12 +8,10 @@ asegura: { (res = true) ↔(existe un i ∈ Z tal que 0 ≤ i < |s| ∧ s[i] = e
 """
 
 def pertenece (s: list[int], e:int) -> bool:
+    res: bool = False
     for i in range(0,len(s),1):
         if s[i] == e:
-            res: bool = True
-            break
-        else:
-            res: bool = False
+            res = True
     return res
 
 print ("Pertenece", pertenece([1,2,3],3))
@@ -279,6 +277,14 @@ es par, entonces s[i] = 0) }
 }
 """
 
+def CerosEnPosicionesPares(s: list[int]) -> None:
+    for i in range(len(s)):
+        if i%2==0:
+            s[i]=0
+    print("S con ceros en sus posiciones pares:", s)
+
+CerosEnPosicionesPares([1,2,3,4,5,6,7,8])
+
 """
 2. problema CerosEnPosicionesPares2 (in s:seq⟨Z⟩) : seq⟨Z⟩ {
 requiere: { T rue }
@@ -287,6 +293,17 @@ par, entonces res[i] = 0) }
 }
 """
 
+def CerosEnPosicionesPares2(s:list[int])->list[int]:
+    res: list[int] = s.copy()
+    for i in range(0,len(s),1):
+        if i%2==0:
+            res[i] = 0
+        else:
+            res[i]=s[i]
+    print("Esta es la lista original", s)
+    return res
+
+print("S' con ceros en sus posiciones pares:", CerosEnPosicionesPares2([1,2,3,4,5,6,7,8]))
 
 """
 3. Dada una cadena de caracteres devuelva una cadena igual a la anterior, pero sin las vocales. No se agregan espacios,
@@ -300,6 +317,19 @@ Nota: Una subsecuencia de una cadena es una nueva secuencia que se crea eliminan
 original, conservando el orden de los elementos restantes.
 """
 
+def sin_vocales(s:list[str]) -> list[str]:
+    res: list[str] = []
+    vocales: list[str] = ['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U']
+    for i in range(len(s)):
+        if s[i] in vocales:
+            pass
+        else:
+            res.append(s[i])
+    print("Lista original", s)
+    return res
+
+print("devolver sin vocales", sin_vocales(['S','e','b','a','s','t','i','a','n']))
+
 """
 4. problema reemplaza vocales (in s:seq⟨Char⟩) : seq⟨Char⟩ {
 requiere: { T rue }
@@ -309,6 +339,19 @@ asegura: { Para todo i ∈ Z, si 0 ≤ i < |res| → (pertenece(<‘a’,‘e’
 }
 """
 
+def reemplaza_vocales(s:list[str]) -> list[str]:
+    res: list[str] = []
+    vocales: list[str] = ['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U']
+    for i in range(len(s)):
+        if s[i] in vocales:
+            res.append("_")
+        else:
+            res.append(s[i])
+    print("Lista original", s)
+    return res
+
+print("Reemplazar vocales", reemplaza_vocales(['S','e','b','a','s','t','i','a','n']))
+
 """
 5. problema da vuelta str (in s:seq⟨Char⟩) : seq⟨Char⟩ {
 requiere: { T rue }
@@ -317,6 +360,15 @@ asegura: { Para todo i ∈ Z si 0 ≤ i < |res| → res[i] = s[|s| − i − 1] 
 }
 """
 
+def da_vuelta_str(s: list[str]) ->  list[str]:
+    res: list[str] = []
+    for i in range(len(s),0,-1):
+            res.append(s[i-1])
+    return res    
+
+print("Dar vuelta al string", da_vuelta_str(["s","a","l","s","a"]))
+
+
 """
 6. problema eliminar repetidos (in s:seq⟨Char⟩) : seq⟨Char⟩ {
 requiere: { T rue }
@@ -324,6 +376,17 @@ asegura: { (|res| ≤ |s|) ∧ (para todo i ∈ Z si 0 ≤ i < |s| → pertenece
 (0 ≤ i, j < |res| ∧ i̸ = j) → res[i]̸ = res[j]) }
 }
 """
+
+# pertenece([1,2,3],3)
+
+def eliminar_repetidos(s:list[str]) -> list[str]:
+    res: list[str] = []
+    for i in range(len(s)):
+        if pertenece(res, s[i]) == False:
+            res.append(s[i])
+    return res
+
+print("Palabra sin elementos repetidos:", eliminar_repetidos(["m","a","n","z","a","n","a"]))
 
 #Ejercicio 3
 
