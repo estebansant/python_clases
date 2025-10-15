@@ -1,0 +1,386 @@
+# Ejercicio 1
+
+"""
+1. problema pertenece (in s:seq⟨Z⟩, in e: Z) : Bool {
+requiere: { T rue }
+asegura: { (res = true) ↔(existe un i ∈ Z tal que 0 ≤ i < |s| ∧ s[i] = e) }
+}
+"""
+
+def pertenece (s: list[int], e:int) -> bool:
+    for i in range(0,len(s),1):
+        if s[i] == e:
+            res: bool = True
+            break
+        else:
+            res: bool = False
+    return res
+
+print ("Pertenece", pertenece([1,2,3],3))
+
+
+"""
+2. problema divide a todos (in s:seq⟨Z⟩, in e: Z) : Bool {
+requiere: { e̸ = 0 }
+asegura: { (res = true) ↔ (para todo i ∈ Z si 0 ≤ i < |s| → s[i] mod e = 0) }
+}
+"""
+
+def divide_a_todos(s:list[int], e:int) -> bool:
+    res: bool = True
+    for i in range(len(s)):
+        if (s[i]%e != 0):
+            res = False
+    return res
+
+print("Divide a todos", divide_a_todos([2,4,6,20], 2))
+
+"""
+3. problema suma total (in s:seq⟨Z⟩) : Z {
+requiere: { T rue }
+asegura: { res es la suma de todos los elementos de s }
+}
+"""
+
+def suma_total(s: list[int]) -> int:
+    res: int = 0
+    for i in range(len(s)):
+        res += s[i]
+    return res
+
+print("Suma total", suma_total([1,2,3,4]))
+
+"""
+4. problema maximo (in s:seq⟨Z⟩) : Z {
+requiere: { |s| > 0 }
+asegura: { res = al mayor de todos los n´umeros que aparece en s }
+}
+"""
+
+def maximo(s:list[int]) -> int:
+    res: int = s[0]
+    for i in range(1,len(s),1):
+        if (s[i]>res):
+            res = s[i]
+    return res
+
+print("Maximo", maximo([1,2,3,9,10,100,40]))
+
+
+"""
+5. problema minimo (in s:seq⟨Z⟩) : Z {
+requiere: { |s| > 0 }
+asegura: { res = al menor de todos los n´umeros que aparece en s }
+}
+"""
+
+def minimo(s:list[int]) -> int:
+    res: int = s[0]
+    for i in range(1,len(s),1):
+        if (s[i]<res):
+            res = s[i]
+    return res
+
+print("Minimo", minimo([1,2,3,9,10,100,0,-10]))
+
+"""
+6. problema ordenados (in s:seq⟨Z⟩) : Bool {
+requiere: { T rue }
+asegura: { res = true ↔(para todo i ∈ Z si 0 ≤ i < (|s| − 1) → s[i] < s[i + 1] }
+}
+"""
+
+def ordenados(s:list[int]) -> bool:
+    res: bool = True
+    for i in range(0,len(s)-1,1):
+        if (s[i]< s[i+1]) == False:
+            res = False
+    return res
+
+print("Ordenados", ordenados([10,11,12,13,14]))
+
+"""
+7. problema pos maximo (in s:seq⟨Z⟩) : Z {
+requiere: { T rue }
+asegura: { (Si |s| = 0, entonces res = −1; si no, res = al ´ındice de la posici´on donde aparece el mayor elemento
+de s (si hay varios es la primera aparici´on) }
+}
+"""
+
+def pos_maximo(s:list[int]) -> int:
+    res: int = 0
+    if len(s)==0:
+        res = -1
+    else:
+        for i in range(len(s)):
+           if s[i]==maximo(s):
+               res = i
+               break
+    return res
+
+print("Posicion del maximo", pos_maximo([1,2,3,9,10,100,100,-10]))
+
+"""
+
+8. problema pos minimo (in s:seq⟨Z⟩) : Z {
+requiere: { T rue }
+asegura: { (Si |s| = 0, entonces res = −1; si no, res = al ´ındice de la posici´on donde aparece el menor elemento
+de s (si hay varios es la ´ultima aparici´on) }
+}
+"""
+
+def pos_minimo(s:list[int]) -> int:
+    res: int = 0
+    if len(s)==0:
+        res = -1
+    else:
+        for i in range(len(s)):
+           if s[i]==minimo(s):
+               res = i
+               break
+    return res
+
+print("Posicion del minimo", pos_minimo([-1,2,0,-2]))
+
+
+"""
+9. Dada una lista de palabras (seq⟨seq⟨Char⟩⟩), devolver verdadero si alguna palabra tiene longitud mayor a 7. Ejemplo:
+[“termo”, “gato”, “tener”, “jirafas”], devuelve falso.
+problema long mayorASiete (in s:seq⟨seq⟨Char⟩⟩) : Bool {
+requiere: { T rue }
+asegura: { (res = true) ↔ (existe i ∈ Z tal que (0 ≤ i < (|s| − 1)) y (|s[i]| > 7) }
+}
+"""
+
+
+
+
+"""
+10. Dado un texto en formato string, devolver verdadero si es pal´ındromo (se lee igual en ambos sentidos), falso en caso
+contrario. Las cadenas de texto vac´ıas o con 1 s´olo elemento son pal´ındromo.
+problema es palindroma (in s:seq⟨Char⟩) : Bool {
+requiere: { T rue }
+asegura: { (res = true) ↔ (s es igual a su reverso) }
+}
+"""
+
+"""
+11. Recorrer una seq⟨Z⟩ y devolver verdadero si hay 3 n´umeros iguales consecutivos, en cualquier posici´on y False en caso
+contrario.
+problema iguales consecutivos (in s:seq⟨Z⟩) : Bool {
+requiere: { T rue }
+asegura: { (res = true) ↔ (existe i, j, k ∈ Z tal que (0 ≤ i, j, k < (|s| − 1)) y (i + 2 = j + 1 = k) y
+(s[i] = s[j] = s[k])) }
+}
+"""
+
+"""
+12. Recorrer una palabra en formato string y devolver True si ´esta tiene al menos 3 vocales distintas y False en caso
+contrario.
+problema vocales distintas (in s:seq⟨Char⟩) : Bool {
+requiere: { T rue }
+asegura: { (res = true) ↔ (existe i, j, k ∈ Z tal que (0 ≤ i, j, k < (|s| − 1)) y (s[i]̸ = s[j]̸ = s[k]) y
+(s[i], s[j], s[k] ∈ {‘a‘, ‘e‘, ‘i‘, ‘o‘, ‘u‘})) }
+}
+"""
+
+"""
+13. Recorrer una seq⟨Z⟩ y devolver la posici´on donde inicia la secuencia de n´umeros ordenada m´as larga. Si hay dos
+subsecuencias de igual longitud devolver la posici´on donde empieza la primera. La secuencia de entrada es no vac´ıa.
+problema pos secuencia ordenada mas larga (in s:seq⟨Z⟩) : Z {
+requiere: { |s| > 0 }
+asegura: { (res = i) ↔ (existe i, j ∈ Z tal que (0 ≤ i, j < (|s| − 1)) y i ≤ j y (para todo k tal que i ≤ k < j →
+s[k] ≤ s[k + 1]) y j-i+1 es m´aximo e i es el m´ınimo valor que lo cumple) }
+}
+"""
+
+
+"""
+14. Cantidad de d´ıgitos impares.
+problema cantidad digitos impares (in s:seq⟨Z⟩) : Z {
+requiere: { Todos los elementos de n´umeros son mayores o iguales a 0 }
+asegura: { res es la cantidad total de d´ıgitos impares que aparecen en cada uno de los elementos de n´umeros }
+}
+Por ejemplo, si la lista de n´umeros es [57, 2383, 812, 246], entonces el resultado esperado ser´ıa 5 (los d´ıgitos impares
+son 5, 7, 3, 3 y 1)
+"""
+
+# Ejercicio 2
+
+"""
+1. problema CerosEnPosicionesPares (inout s:seq⟨Z⟩) {
+requiere: { T rue }
+modifica: { s }
+asegura: { (|s| = |s@pre|) y (para todo i entero, con 0 <= i < |s|, si i es impar entonces s[i] = s@pre[i] y, si i
+es par, entonces s[i] = 0) }
+}
+"""
+
+"""
+2. problema CerosEnPosicionesPares2 (in s:seq⟨Z⟩) : seq⟨Z⟩ {
+requiere: { T rue }
+asegura: { (|s| = |res|) y (para todo i entero, con 0 <= i < |res|, si i es impar entonces res[i] = s[i] y, si i es
+par, entonces res[i] = 0) }
+}
+"""
+
+
+"""
+3. Dada una cadena de caracteres devuelva una cadena igual a la anterior, pero sin las vocales. No se agregan espacios,
+sino que borra la vocal y concatena a continuaci´on.
+problema sin vocales (in s:seq⟨Char⟩) : seq⟨Char⟩ {
+requiere: { T rue }
+asegura: { res es la subsecuencia de s que se obtiene al quitarle las vocales a s }
+}
+
+Nota: Una subsecuencia de una cadena es una nueva secuencia que se crea eliminando algunos elementos de la cadena
+original, conservando el orden de los elementos restantes.
+"""
+
+"""
+4. problema reemplaza vocales (in s:seq⟨Char⟩) : seq⟨Char⟩ {
+requiere: { T rue }
+asegura: { |res| = |s| }
+asegura: { Para todo i ∈ Z, si 0 ≤ i < |res| → (pertenece(<‘a’,‘e’,‘i’,‘o’,‘u’>, s[i]) ∧ res[i] = ‘ ’) ∨
+(¬ pertenece(<‘a’,‘e’,‘i’,‘o’,‘u’>, s[i]) ∧ res[i] = s[i])) }
+}
+"""
+
+"""
+5. problema da vuelta str (in s:seq⟨Char⟩) : seq⟨Char⟩ {
+requiere: { T rue }
+asegura: { |res| = |s| }
+asegura: { Para todo i ∈ Z si 0 ≤ i < |res| → res[i] = s[|s| − i − 1] }
+}
+"""
+
+"""
+6. problema eliminar repetidos (in s:seq⟨Char⟩) : seq⟨Char⟩ {
+requiere: { T rue }
+asegura: { (|res| ≤ |s|) ∧ (para todo i ∈ Z si 0 ≤ i < |s| → pertenece(s[i], res)) ∧ (para todo i, j ∈ Z si
+(0 ≤ i, j < |res| ∧ i̸ = j) → res[i]̸ = res[j]) }
+}
+"""
+
+#Ejercicio 3
+
+"""
+Ejercicio 3. Implementar una funci´on para conocer el estado de aprobaci´on de una materia a partir de las notas obtenidas
+por un/a alumno/a cumpliendo con la siguiente especificaci´on:
+problema resultadoMateria (in notas: seq⟨Z⟩) : Z {
+requiere: { |notas| > 0 }
+requiere: { Para todo i ∈ Z si 0 ≤ i < |notas| → 0 ≤ notas[i] ≤ 10) }
+asegura: { res = 1 ↔ todos los elementos de notas son mayores o iguales a 4 y el promedio es mayor o igual a 7 }
+asegura: { res = 2 ↔ todos los elementos de notas son mayores o iguales a 4 y el promedio est´a entre 4 (inclusive) y 7 }
+asegura: { res = 3 ↔ alguno de los elementos de notas es menor a 4 o el promedio es menor a 4 }
+}
+"""
+
+# Ejercicio 4
+
+"""
+Ejercicio 4. Dada una lista de tuplas, que representa un historial de movimientos en una cuenta bancaria, devolver el saldo
+actual. Asumir que el saldo inicial es 0. Las tuplas tienen una letra que nos indica el tipo de movimiento “I” para ingreso
+de dinero y “R” para retiro de dinero, y adem´as el monto de cada operaci´on. Por ejemplo, si la lista de tuplas es [(‘‘I’’,
+2000), (‘‘R’’, 20),(‘‘R’’, 1000),(‘‘I’’, 300)] entonces el saldo actual es 1280.
+problema saldoActual (in movimientos: seq⟨Char × Z⟩) : Z {
+requiere: { Para todo i ∈ Z si 0 ≤ i < |movimientos| → movimientos[i]0 ∈ {“I”,“R”} y movimientos[i]1 > 0 }
+asegura: { res = Pingresos
+i movimientos[i]1 − Pretiros
+i movimientos[i]1 }
+}
+"""
+
+# Ejercicio 5
+
+"""
+1. problema pertenece a cada uno version 1 (in s:seq⟨seq⟨Z⟩⟩, in e:Z, out res: seq⟨Bool⟩) {
+requiere: { T rue }
+asegura: { |res| ≥ |s| }
+asegura: { Para todo i ∈ Z si 0 ≤ i < |s| → (res[i] = true ↔ pertenece(s[i], e)) }
+}
+"""
+
+
+"""
+Nota: Reutilizar la funci´on pertenece() implementada previamente para listas.
+2. problema pertenece a cada uno version 2 (in s:seq⟨seq⟨Z⟩⟩, in e:Z, out res: seq⟨Bool⟩) {
+requiere: { T rue }
+asegura: { |res| = |s| }
+asegura: { Para todo i ∈ Z si 0 ≤ i < |s| → (res[i] = true ↔ pertenece(s[i], e)) }
+}
+"""
+
+"""
+3. problema pertenece a cada uno version 3 (in s:seq⟨seq⟨Z⟩⟩, in e:Z) : seq⟨Bool⟩ {
+requiere: { T rue }
+asegura: { |res| = |s| }
+asegura: { Para todo i ∈ Z si 0 ≤ i < |s| → (res[i] = true ↔ pertenece(s[i], e)) }
+}
+"""
+
+# Ejercicio 6
+
+"""
+1. problema es matriz (in s:seq⟨seq⟨Z⟩⟩) : Bool {
+requiere: { T rue }
+asegura: { res = true ↔ (|s| > 0) ∧ (|s[0]| > 0) ∧ (Para todo i ∈ Z si 0 ≤ i < |s| → |s[i]| = |s[0]|) }
+}
+"""
+
+"""
+2. problema filas ordenadas (in m:seq⟨seq⟨Z⟩⟩, out res: seq⟨Bool⟩) {
+requiere: { esM atriz(m) }
+asegura: { Para todo i ∈ Z si 0 ≤ i < |res| → (res[i] = true ↔ ordenados(s[i])) }
+}
+
+Nota: Reutilizar la funci´on ordenados() implementada previamente para listas
+"""
+
+
+"""
+3. problema columna (in m:seq⟨seq⟨Z⟩⟩, in c: Z) : seq⟨Z⟩ {
+requiere: { esM atriz(m) }
+requiere: { c < |m[0]| }
+requiere: { c ≥ 0 }
+asegura: { Devuelve una secuencia con exactamente los mismos elementos de la columna c de la matriz m, en
+el mismo orden que aparecen }
+}
+"""
+
+"""
+4. problema columnas ordenadas (in m:seq⟨seq⟨Z⟩⟩) : seq⟨Bool⟩ {
+requiere: { esM atriz(m) }
+asegura: { Para todo ´ındice de columna c: 0 ≤ c < |m[0]| → (res[c] = true ↔ ordenados(columna(m, c))) }
+asegura: {|res| = |m[0]|}
+}
+
+Nota: Reutilizar la funci´on ordenados() implementada previamente para listas
+"""
+
+
+"""
+5. problema transponer (in m:seq⟨seq⟨Z⟩⟩) : seq⟨seq⟨Z⟩⟩ {
+requiere: { esM atriz(m) }
+asegura: { Devuelve mt (o sea la matriz transpuesta) }
+}
+
+Nota: Usar columna() para ir obteniendo todas las columnas de la matriz.
+"""
+
+"""
+6. Ta-Te-Ti Tradicional:
+problema quien gana tateti (in m:seq⟨seq⟨Char⟩⟩) : Z {
+requiere: { esMatriz(m) }
+requiere: { |m| = 3 }
+requiere: { |m[0]| = 3 }
+requiere: { En la matriz si hay 3 X alineadas verticalmente =⇒ no hay 3 O alineadas verticalmente }
+requiere: { En la matriz si hay 3 O alineadas verticalmente =⇒ no hay 3 X alineadas verticalmente }
+requiere: { En la matriz si hay 3 X alineadas horizontalmente =⇒ no hay 3 O alineadas horizontalmente }
+requiere: { En la matriz si hay 3 O alineadas horizontalmente =⇒ no hay 3 X alineadas horizontalmente }
+requiere: { Para todo i,j ∈ {0, 1, 2} =⇒ m[i][j] = X ∨ m[i][j] = O ∨ m[i][j] = ” ”}
+asegura: { Si hay 3 O alineadas verticalmente, horizontalmente o en diagonal, devuelve 0 }
+asegura: { Si hay 3 X alineadas verticalmente, horizontalmente o en diagonal, devuelve 1 }
+asegura: { Si no hay ni 3 X, ni 3 O alineadas verticalmente, horizontalmente o en diagonal, devuelve 2 }
+}
+"""
