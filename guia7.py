@@ -152,7 +152,14 @@ asegura: { (res = true) ↔ (existe i ∈ Z tal que (0 ≤ i < (|s| − 1)) y (|
 }
 """
 
+def long_mayorASiete(s: list[str]) -> bool:
+    res: bool = False
+    for i in range(len(s)):
+        if len(s[i])>7:
+            res = True
+    return res
 
+print("Longitud mayor a 7", long_mayorASiete(["termo", "gato", "tener", "jirafas", "cacatuas"]))
 
 
 """
@@ -163,6 +170,20 @@ requiere: { T rue }
 asegura: { (res = true) ↔ (s es igual a su reverso) }
 }
 """
+def es_palindromo(s: list[str]) -> bool:
+    res: bool = False
+    lista_reverso: list[str] = []
+    if len(s) <= 1:
+        res = True
+    else:
+        for i in range(len(s),0,-1):
+            lista_reverso.append(s[i-1])
+            print(lista_reverso)
+        if (lista_reverso == s):
+            res = True
+    return res    
+
+print("Es palindromo", es_palindromo(["s","a","l","a","s"]))
 
 """
 11. Recorrer una seq⟨Z⟩ y devolver verdadero si hay 3 n´umeros iguales consecutivos, en cualquier posici´on y False en caso
@@ -174,6 +195,15 @@ asegura: { (res = true) ↔ (existe i, j, k ∈ Z tal que (0 ≤ i, j, k < (|s| 
 }
 """
 
+def iguales_consecutivos(s:list[int]) -> bool:
+    res: bool = False
+    for i in range(len(s)-2):
+        if (s[i] == s[i+1]) and (s[i]==s[i+2]):
+            res = True
+    return res
+
+print("Iguales 3 Numeros Consecutivos", iguales_consecutivos([0,1,1,1,78,5,5,5,8,9,0]))
+
 """
 12. Recorrer una palabra en formato string y devolver True si ´esta tiene al menos 3 vocales distintas y False en caso
 contrario.
@@ -183,6 +213,22 @@ asegura: { (res = true) ↔ (existe i, j, k ∈ Z tal que (0 ≤ i, j, k < (|s| 
 (s[i], s[j], s[k] ∈ {‘a‘, ‘e‘, ‘i‘, ‘o‘, ‘u‘})) }
 }
 """
+
+def vocales_distintas(s:list[str])-> bool:
+    res: bool = False
+    vocales: list[str] = ['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U']
+    vocales_en_palabra: list[str] = []
+    for i in range(len(s)):
+        if (s[i] in vocales):
+            vocales_en_palabra.append(s[i])
+        print(vocales_en_palabra)
+    for j in range(len(vocales_en_palabra)-2):
+        if (vocales_en_palabra[j] != vocales_en_palabra[j+1]) and (vocales_en_palabra[j]!=vocales_en_palabra[j+2]) and (vocales_en_palabra[j+1] != vocales_en_palabra[j+2]):
+            res = True
+            
+    return res
+
+print("3 vocales distintas", vocales_distintas(['S','e','b','a','s','t','i','a','n']))
 
 """
 13. Recorrer una seq⟨Z⟩ y devolver la posici´on donde inicia la secuencia de n´umeros ordenada m´as larga. Si hay dos
@@ -195,6 +241,8 @@ s[k] ≤ s[k + 1]) y j-i+1 es m´aximo e i es el m´ınimo valor que lo cumple) 
 """
 
 
+
+
 """
 14. Cantidad de d´ıgitos impares.
 problema cantidad digitos impares (in s:seq⟨Z⟩) : Z {
@@ -204,6 +252,21 @@ asegura: { res es la cantidad total de d´ıgitos impares que aparecen en cada u
 Por ejemplo, si la lista de n´umeros es [57, 2383, 812, 246], entonces el resultado esperado ser´ıa 5 (los d´ıgitos impares
 son 5, 7, 3, 3 y 1)
 """
+
+def cantidad_digitos_impares(s:list[int]) -> int:
+    res: int = 0
+    digitos_impares: list[str] = ["1", "3", "5", "7", "9"]
+    for i in range(len(s)):
+        numero: str = str(s[i])
+        print(numero)
+        for j in numero:
+            if j in digitos_impares:
+                res +=1
+    return res
+
+print("cantidad de numeros impares:", cantidad_digitos_impares([57, 2383, 812, 246,1,3,5,6,8,9,7]))
+
+
 
 # Ejercicio 2
 
