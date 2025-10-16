@@ -462,17 +462,53 @@ requiere: { T rue }
 asegura: { |res| ≥ |s| }
 asegura: { Para todo i ∈ Z si 0 ≤ i < |s| → (res[i] = true ↔ pertenece(s[i], e)) }
 }
-"""
 
-
-"""
 Nota: Reutilizar la funci´on pertenece() implementada previamente para listas.
+"""
+# pertenece([1,2,3],3)
+
+def pertenece_a_cada_uno_v1(s:list[int], e:int) -> list[bool]:
+    res:list[bool] = []
+    numero_a_lista: list[int] = []
+    for i in range(len(s)):
+        numero_a_lista.append(s[i])
+        print("Primer print", numero_a_lista)
+        if pertenece(numero_a_lista,e):
+            res.append(True)
+        else:
+            res.append(False)
+        numero_a_lista.remove(s[i])
+        print("Primer print", numero_a_lista)
+    print(s) 
+    return res
+
+print("Pertenece a cada uno version 1", pertenece_a_cada_uno_v1([1,2,3], 3))
+
+"""
 2. problema pertenece a cada uno version 2 (in s:seq⟨seq⟨Z⟩⟩, in e:Z, out res: seq⟨Bool⟩) {
 requiere: { T rue }
 asegura: { |res| = |s| }
 asegura: { Para todo i ∈ Z si 0 ≤ i < |s| → (res[i] = true ↔ pertenece(s[i], e)) }
 }
 """
+
+def pertenece_a_cada_uno_v2(s:list[int], e:int) -> list[bool]:
+    res:list[bool] = []
+    numero_a_lista: list[int] = []
+    for i in range(len(s)):
+        numero_a_lista.append(s[i])
+        print("Primer print", numero_a_lista)
+        if pertenece(numero_a_lista,e):
+            res.append(True)
+        else:
+            res.append(False)
+        numero_a_lista.remove(s[i])
+        print("Primer print", numero_a_lista)
+    print(s) 
+    return res
+
+print("Pertenece a cada uno version 2", pertenece_a_cada_uno_v2([1,2,3], 3))
+
 
 """
 3. problema pertenece a cada uno version 3 (in s:seq⟨seq⟨Z⟩⟩, in e:Z) : seq⟨Bool⟩ {
@@ -481,6 +517,25 @@ asegura: { |res| = |s| }
 asegura: { Para todo i ∈ Z si 0 ≤ i < |s| → (res[i] = true ↔ pertenece(s[i], e)) }
 }
 """
+
+#PREGUNTAR: SON EL MISMO PROBLEMA PERO CON ESPECIFICACIONE SCRITA DISTINTA? EL out DE LA ESPECIFICACION ES EQUIVALENTE A HACER UN RETURN?
+
+def pertenece_a_cada_uno_v3(s:list[int], e:int) -> list[bool]:
+    res:list[bool] = []
+    numero_a_lista: list[int] = []
+    for i in range(len(s)):
+        numero_a_lista.append(s[i])
+        print("Primer print", numero_a_lista)
+        if pertenece(numero_a_lista,e):
+            res.append(True)
+        else:
+            res.append(False)
+        numero_a_lista.remove(s[i])
+        print("Primer print", numero_a_lista)
+    print(s) 
+    return res
+
+print("Pertenece a cada uno version 3", pertenece_a_cada_uno_v3([1,2,3], 3))
 
 # Ejercicio 6
 
