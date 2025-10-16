@@ -402,6 +402,25 @@ asegura: { res = 3 ↔ alguno de los elementos de notas es menor a 4 o el promed
 }
 """
 
+def mayor_igual_a_4(s:list[int]) -> bool:
+    res: bool = True
+    for i in range(len(s)):
+        if s[i] < 4:
+            res= False
+    return res
+
+def resultadoMateria(notas: list[int]) -> int:
+    res: int = 0
+    if mayor_igual_a_4(notas) and (suma_total(notas)/len(notas) > 7):
+        res=1
+    elif mayor_igual_a_4(notas) and (4 <= suma_total(notas)/len(notas) < 7):
+        res = 2
+    elif (mayor_igual_a_4(notas)==False) or (suma_total(notas)/len(notas) < 4):
+        res=3
+    return res
+
+print("La nota de la materia es:", resultadoMateria([7,5,4,6]))
+
 # Ejercicio 4
 
 """
