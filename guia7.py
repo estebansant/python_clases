@@ -1,3 +1,5 @@
+from typing import Tuple
+
 # Ejercicio 1
 
 """
@@ -435,6 +437,22 @@ i movimientos[i]1 − Pretiros
 i movimientos[i]1 }
 }
 """
+
+MiTupla = Tuple[str, int]
+
+def saldoActual(movimientos: list[Tuple[str, int]]) -> int:
+    res: int = 0
+    for operacion, monto in movimientos:
+        if operacion == "R":
+            res -= monto
+        elif operacion == "I":
+            res += monto
+    return res
+
+listaMovimientos: list[Tuple[str,int]] = [
+    ("I",2000), ("R",20), ("R",1000), ("I",300)
+]
+print("El saldo actual de la cuenta es:", saldoActual(listaMovimientos))
 
 # Ejercicio 5
 
