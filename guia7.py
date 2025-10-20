@@ -546,6 +546,18 @@ asegura: { res = true ↔ (|s| > 0) ∧ (|s[0]| > 0) ∧ (Para todo i ∈ Z si 0
 }
 """
 
+def es_matriz(s: list[list[int]]) -> bool:
+    res: bool = True
+    if (len(s) <= 0) or (len(s[0])<=0):
+        res = False
+    elif (len(s) > 0) and (len(s[0])>0):
+        for i in range(len(s)):
+            if ((len(s[0])>1) and (len(s) == 1)) or (len(s[i]) != len(s[0])):
+                res = False
+    return res
+
+print("Es matriz", es_matriz([[0,1,2],[2,1,6],[]]))
+
 """
 2. problema filas ordenadas (in m:seq⟨seq⟨Z⟩⟩, out res: seq⟨Bool⟩) {
 requiere: { esM atriz(m) }
@@ -555,6 +567,19 @@ asegura: { Para todo i ∈ Z si 0 ≤ i < |res| → (res[i] = true ↔ ordenados
 Nota: Reutilizar la funci´on ordenados() implementada previamente para listas
 """
 
+def filas_ordenadas(s:list[list[int]]) -> list[bool]:
+    res: list[bool] = []
+    for i in range(len(s)):
+        res.append(ordenados(s[i]))
+    return res
+
+print("filas ordenadas de matriz", filas_ordenadas([
+    [1,2,3,4,40],
+    [2,3,1000,1,7],
+    [9,8,7,4,8],
+    [1,2,3,4,10],
+    [8,9,10,20,30]
+]))
 
 """
 3. problema columna (in m:seq⟨seq⟨Z⟩⟩, in c: Z) : seq⟨Z⟩ {
@@ -566,6 +591,21 @@ el mismo orden que aparecen }
 }
 """
 
+def devuelve_columna(m: list[list[int]], c: int) -> list[int]:
+    res: list[int] = []
+    for i in range(len(m)):
+        res.append(m[i][c])
+    return res
+
+print(devuelve_columna([
+    [1,2,2,3,4],
+    [2,3,1000,1,7],
+    [9,8,7,4,8],
+    [1,2,3,4,10],
+    [8,9,10,20,30]
+], -1))
+
+
 """
 4. problema columnas ordenadas (in m:seq⟨seq⟨Z⟩⟩) : seq⟨Bool⟩ {
 requiere: { esM atriz(m) }
@@ -576,6 +616,23 @@ asegura: {|res| = |m[0]|}
 Nota: Reutilizar la funci´on ordenados() implementada previamente para listas
 """
 
+def columnas_ordenadas(m: list[list[int]]) -> list[bool]:
+    res: list[bool]=[]
+    for c in range(0,len(m[0]),1):
+        columna: list[int] = devuelve_columna(m,c)
+        if (ordenados(columna)):
+            res.append(True)
+        else:
+            res.append(False)
+    return res
+
+print(columnas_ordenadas([
+    [1,2,2,3,4],
+    [2,3,1000,1,7],
+    [9,8,7,4,8],
+    [1,2,3,4,10],
+    [8,9,10,20,30]
+]))
 
 """
 5. problema transponer (in m:seq⟨seq⟨Z⟩⟩) : seq⟨seq⟨Z⟩⟩ {
@@ -585,6 +642,20 @@ asegura: { Devuelve mt (o sea la matriz transpuesta) }
 
 Nota: Usar columna() para ir obteniendo todas las columnas de la matriz.
 """
+
+def trasponer(m:list[list[int]]) -> list[list[int]]:
+    res: list[list[int]] = []
+    for i in range(len(m)):
+        res.append(devuelve_columna(m,i))
+    return res
+
+print("Matriz traspuesta", trasponer([
+    [1,2,2,3,4],
+    [2,3,1000,1,7],
+    [9,8,7,4,8],
+    [1,2,3,4,10],
+    [8,9,10,20,30]
+]))
 
 """
 6. Ta-Te-Ti Tradicional:
