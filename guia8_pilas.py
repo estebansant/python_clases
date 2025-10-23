@@ -1,3 +1,6 @@
+from queue import LifoQueue as Pila
+import random
+
 # Ejercicio 1
 '''
 problema generar nros al azar (in cantidad: Z, in desde: Z, in hasta: Z) : Pila[Z] {
@@ -17,6 +20,22 @@ elemento = p . get () # desapila
 p . empty () # devuelve true si y solo si la pila est á vac ı́ a
 '''
 
+def imprimir_pila(pila: Pila) -> list[int]:
+    res: list = []
+    while not pila.empty():
+        res.append(pila.get()) 
+    return res
+
+def generar_nros_al_azar(cantidad: int, desde: int, hasta: int) -> Pila[int]:
+    res: Pila[int] = Pila()
+    cont: int = 0
+    while cont < cantidad:
+        res.put(random.randint(desde,hasta))
+        cont +=1
+    return res
+
+
+print("Generar numero al azar:", imprimir_pila(generar_nros_al_azar(10,1,10)))
 
 
 # Ejercicio 2
