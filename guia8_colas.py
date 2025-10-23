@@ -1,0 +1,123 @@
+# Parte 2: Colas
+
+# Ejercicio 8
+'''
+problema generar nros al azar (in cantidad: Z, in desde: Z, in hasta: Z) : Cola[Z] {
+requiere: {cantidad ≥ 0}
+requiere: {desde ≤ hasta}
+asegura: {El tamaño de res es igual a cantidad}
+asegura: {Todos los elementos de res son valores entre desde y hasta (ambos inclusive), seleccionados aleatoriamente
+con probabilidad uniforme}
+}
+Para generar números en un rango con probabilidad uniforme, pueden usar la función random.randint(< desde >, < hasta >)
+que devuelve un número en el rango indicado. Recuerden importar el módulo random con import random. Pueden usar la clase
+Queue() que es un ejemplo de una implementación básica de una Cola:
+from queue import Queue as Cola # importa Queue y le asigna el alias Cola
+c = Cola () # creo una
+c . put (1) # encolo el
+elemento = c . get () #
+c . empty () # devuelve
+cola
+1
+desencolo
+true si y solo si la cola est á vac ı́ a
+'''
+
+
+
+# Ejercicio 9
+'''
+problema cantidad elementos (in c: Cola) : Z {
+requiere: {True}
+asegura: {res es igual a la cantidad de elementos que contiene c}
+}
+No se puede utilizar la función Queue.qsize().
+Comparar el resultado con la implementación utilizando una pila en lugar de una cola.
+'''
+
+
+# Ejercicio 10
+
+'''
+problema buscar el maximo (in c: Cola[Z]) : Z {
+requiere: {c no está vacı́a}
+asegura: {res es un elemento de c}
+asegura: {res es mayor o igual a todos los elementos de c}
+}
+Comparar con la versión usando pila.
+'''
+
+
+# Ejercicio 11
+'''
+problema buscar nota minima (in c: Cola[seq⟨Char × Z⟩]) : (seq⟨Char × Z⟩) {
+requiere: {c no está vacı́a}
+requiere: {los elementos de c no tienen valores repetidos en la segunda componente de las tuplas}
+asegura: {res es una tupla de c}
+asegura: {No hay ningún elemento en c cuya segunda componente sea menor que la de res }
+}
+'''
+
+
+# Ejercicio 12
+'''
+problema intercalar (in c1: Cola, in c2: Cola) : Cola {
+requiere: {c1 y c2 tienen la misma cantidad de elementos}
+asegura: {res solo contiene los elementos de c1 y c2}
+asegura: {res contiene todos los elementos de c1 y c2, intercalados y respetando el orden original}
+asegura: {El primer elemento de res es el primer elemento de c1}
+asegura: {El tamaño de res es igual al doble del tamaño de c1}
+}
+'''
+
+
+
+
+# Ejercicio 13
+'''
+Ejercicio 13. Bingo: un cartón de bingo contiene 12 números al azar en el rango [0, 99]. Implementar una solución para cada
+uno de los siguientes problemas.
+1. problema armar secuencia de bingo () : Cola[Z] {
+requiere: {True}
+asegura: {res solo contiene 100 números del 0 al 99 inclusive, sin repetidos}
+asegura: {Los números de res están ordenados al azar}
+}
+Para generar números pseudoaleatorios pueden usar la función random.randint(< desde >, < hasta >) que devuelve un
+número en el rango indicado. Recuerden importar el módulo random con import random.
+2. problema jugar carton de bingo (in carton: seq⟨Z⟩, in bolillero: Cola[Z]) : Z {
+requiere: {carton solo contiene 12 números, sin repetidos, con valores entre 0 y 99, ambos inclusive}
+requiere: {bolillero solo contiene 100 números, ordenados al azar, del 0 al 99, ambos inclusive, sin repetidos}
+asegura: {res es la cantidad mı́nima de jugadas necesarias para que todos los números del carton hayan salido del
+bolillero}
+}
+'''
+
+
+
+# Ejercicio 14
+'''
+Ejercicio 14. Vamos a modelar una guardia de un hospital usando una cola donde se van almacenando los pedidos de atención
+para los pacientes que van llegando. A cada paciente se le asigna una prioridad del 1 al 10 (donde la prioridad 1 es la más urgente
+y requiere atención inmediata) junto con su nombre y la especialidad médica que le corresponde. Implementar una solución para
+el siguiente problema.
+problema pacientes urgentes (in c:Cola[Z× seq⟨Char⟩ × seq⟨Char⟩]) : Z {
+requiere: {Todos los elementos de c tienen como primer componente de la tupla un entero positivo y menor a 11}
+asegura: {res es la cantidad de elementos de c que tienen como primer componente de la tupla un número menor a 4}
+}
+'''
+
+
+
+# Ejercicio 15
+'''
+Ejercicio 15. La gerencia de un banco nos pide modelar la atención de los clientes usando una cola donde se van registrando
+los pedidos de atención. Cada vez que ingresa una persona a la entidad, debe completar sus datos en una pantalla que está a la
+entrada: Nombre y Apellido, DNI, tipo de cuenta (true si es preferencial o f alse en el caso contrario) y si tiene prioridad (true
+o f alse) por ser adulto +65, embarazada o con movilidad reducida.
+La atención a los clientes se da por el siguiente orden: primero las personas que tienen prioridad, luego las que tienen cuenta
+bancaria preferencial y por último el resto. Dentro de cada subgrupo de clientes, se respeta el orden de llegada.
+1. Dar una especificación para el problema planteado.
+2. Implementar atencion a clientes(in c : Cola[tuple[str, int, bool, bool]]) → Cola[tuple[str, int, bool, bool]] que da-
+da la cola de ingreso de clientes al banco devuelve la cola en la que van a ser atendidos.
+'''
+
