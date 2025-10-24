@@ -180,6 +180,32 @@ Y la siguiente es una fórmula que no tiene los paréntesis bien balanceados:
 1 + ) 2 x 3 ( ()
 '''
 
+print("---------------")
+
+def parentesis_ordenados(p: Pila[str]) -> bool:
+    res: bool = False
+    pCopia: Pila[str] = Pila ()
+    while not p.empty():
+        pCopia.put(p.get())
+
+def problema_esta_bien_balanceada(s:str) -> bool:
+    sCopia: Pila[str] = Pila()
+
+    for char in s:
+        if char == "(":
+            sCopia.put(char)
+            print(imprimir_pila(sCopia))
+        elif char == ")":
+            if sCopia.empty():
+                return False
+            else:
+                sCopia.get()
+                print(imprimir_pila(sCopia))
+    
+    print("string original", s)
+    return sCopia.empty()
+
+print(problema_esta_bien_balanceada("(1 + 2) + 3 ("))
 
 # Ejercicio 6
 '''
