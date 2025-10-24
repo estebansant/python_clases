@@ -88,6 +88,34 @@ asegura: {res es mayor o igual a todos los elementos de p}
 }
 '''
 
+def buscar_el_maximo(p: Pila[int]) -> int:
+    res: int = p.get()
+    pCopia: Pila[int] = Pila()
+    pCopia.put(res)
+    while not p.empty():
+        elemento: int = p.get()
+        pCopia.put(elemento)
+        if res>=elemento:
+            res = res
+        else:
+            res = elemento
+    while not pCopia.empty():
+        p.put(pCopia.get())
+    print("Pila dentro de la funcion", imprimir_pila(p))
+    return res
+
+pila2: Pila[int] = Pila()
+pila2.put(0)
+pila2.put(100)
+pila2.put(10)
+pila2.put(10)
+pila2.put(70)
+
+print("Pila antes de la funcion", imprimir_pila(pila2))
+print("El maximo de la pila es:", buscar_el_maximo(pila2))
+print("Pila despues de la funcion", imprimir_pila(pila2))
+
+
 # Ejercicio 4
 '''
 problema buscar nota maxima (in p: Pila[seq⟨Char⟩×Z]) : seq⟨Char⟩ ×Z {
