@@ -289,3 +289,42 @@ asegura: {El tamaño de res es igual al doble del tamaño de p1}
 }
 Nota: Ojo que hay que recorrer dos veces para que queden en el orden apropiado al final.
 '''
+
+def intercalar(p1: Pila, p2: Pila) -> Pila:
+    res: Pila = Pila()
+    p1Copia: Pila = Pila()
+    p2Copia: Pila = Pila()
+    cont: int = 0
+    while not p1.empty():
+        p1Copia.put(p1.get())
+    while not p2.empty():
+        p2Copia.put(p2.get())
+    print("Pila 1 copia", imprimir_pila(p1Copia))
+    print("Pila 2 copia", imprimir_pila(p2Copia))
+    while (not p1Copia.empty()) or (not p2Copia.empty()):
+        if cont%2==0:
+            elem = p1Copia.get()
+            res.put(elem)
+            p1.put(elem)
+
+        else:
+            item = p2Copia.get()
+            res.put(item)
+            p2.put(item)
+        cont += 1
+    print("Pila 1 despues de la operacion", imprimir_pila(p1))
+    print("Pila 2 despues de la operacion", imprimir_pila(p2))
+    return res
+
+p1:Pila[int] = Pila()
+p1.put(1)
+p1.put(2)
+p1.put(3)
+p1.put(4)
+p2:Pila[str] = Pila()
+p2.put("H")
+p2.put("o")
+p2.put("l")
+p2.put("a")
+
+print("Pila resultante", imprimir_pila(intercalar(p1,p2)))
