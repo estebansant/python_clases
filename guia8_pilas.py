@@ -21,9 +21,14 @@ p . empty () # devuelve true si y solo si la pila est á vac ı́ a
 '''
 
 def imprimir_pila(pila: Pila) -> list[int]:
-    res: list = []
+    res: list[int] = []
+    pilaCopy: Pila = Pila()
     while not pila.empty():
-        res.append(pila.get()) 
+        item = pila.get()
+        res.append(item) 
+        pilaCopy.put(item)
+    while not pilaCopy.empty():
+        pila.put(pilaCopy.get())
     return res
 
 def generar_nros_al_azar(cantidad: int, desde: int, hasta: int) -> Pila[int]:
@@ -48,6 +53,30 @@ No se puede utilizar la función LifoQueue.qsize(). Tener en cuenta que, al usar
 parámetro de entrada, ya que los elementos se eliminan al accederse. Dado que la especificación lo define como de tipo in, debe
 restaurarse posteriormente.
 '''
+
+def cantidad_elementos(p: Pila) -> int:
+    res: int = 0
+    pCopy: Pila = Pila()
+    while not p.empty():
+        pCopy.put(p.get())
+        res += 1
+    while not pCopy.empty():
+        p.put(pCopy.get())
+    print("Pila copia", imprimir_pila(pCopy))
+    print("Pila de la funcion", imprimir_pila(p))
+
+    return res
+
+p = Pila()
+p.put(1)
+p.put(2)
+p.put(3)
+p.put(4)
+p.put(5)
+p.put(3)
+p.put(["bla bla bla"])
+print("Cantidad de elementos", cantidad_elementos(p))
+print("Esta es la Pila original", imprimir_pila(p))
 
 
 # Ejercicio 3
