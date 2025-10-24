@@ -233,7 +233,49 @@ resultado = evaluar_expresion(expresion)
 print(resultado) # Deberı́a imprimir 33
 '''
 
+print("---------------")
 
+def evaluar_expresion(s:str) -> float:
+    res: float = 0
+    tokens: list[str] = s.split()
+    operandos: Pila[float] = Pila()
+    for i in range(len(tokens)):
+        if (tokens[i] != "+") and (tokens[i] != "-") and (tokens[i] != "*") and (tokens[i] != "/"):
+            operandos.put(float(tokens[i]))
+        elif (tokens[i] == "+"):
+            operando1: float = operandos.get()
+            operando2: float = operandos.get()
+            operacion: float = operando1+operando2
+            operandos.put(operacion)
+            print("Imprimir suma", imprimir_pila(operandos))
+        elif (tokens[i] == "-"):
+            operando1: float = operandos.get()
+            operando2: float = operandos.get()
+            operacion: float = operando2-operando1
+            operandos.put(operacion)
+            print("Imprimir resta", imprimir_pila(operandos))
+        elif (tokens[i] == "*"):
+            operando1: float = operandos.get()
+            operando2: float = operandos.get()
+            operacion: float = operando1*operando2
+            operandos.put(operacion)
+            print("Imprimir multiplicacion", imprimir_pila(operandos))
+
+        elif (tokens[i] == "/"):
+            operando1: float = operandos.get()
+            operando2: float = operandos.get()
+            operacion: float = operando2/operando1
+            operandos.put(operacion)
+            print("Imprimir division", imprimir_pila(operandos))
+    res = operandos.get()
+    print("Impresion final antes de salir", imprimir_pila(operandos))
+    return res
+
+expresion = "12 4 /"
+resultado = evaluar_expresion(expresion)
+print("El resultado es:", resultado)
+
+    
 
 # Ejercicio 7
 
