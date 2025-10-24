@@ -1,4 +1,5 @@
 from queue import LifoQueue as Pila
+from typing import Tuple
 import random
 
 # Ejercicio 1
@@ -125,6 +126,39 @@ asegura: {res es una tupla de p}
 asegura: {No hay ningún elemento en p cuya segunda componente sea mayor que la segunda componente de res }
 }
 '''
+
+def buscar_nota_maxima(p: Pila[Tuple[str, int]]) -> Tuple[str, int]:
+    res: Tuple[str, int] = []
+    notas: Pila[int] = Pila()
+    pCopia: Pila[Tuple[str,int]] = Pila()
+    while not p.empty():
+        elemento: Tuple [str,int] = p.get()
+        pCopia.put(elemento)
+
+        # nombre:str = elemento[0]
+        nota:int = elemento [1]
+        notas.put(nota)
+    maximo: int = buscar_el_maximo(notas)
+    while not pCopia.empty():
+        item: Tuple[str,int] = pCopia.get()
+        notaMaxima:int = item [1]
+        p.put(item)
+
+        if notaMaxima == maximo:
+            res = item
+    print("Notas antes de salir de la funcion", imprimir_pila(p))
+    return res
+
+
+notas: Pila[Tuple[str,int]] = Pila()
+notas.put(("Jaime",2000)) 
+notas.put(("Giorgio",20))
+notas.put(("Giovanni",100000))
+notas.put(("Hector",300))
+
+print("Notas antes de la funcion", imprimir_pila(notas))
+print("La nota maxima es", buscar_nota_maxima(notas))
+print("Notas despues de la funcion", imprimir_pila(notas))
 
 
 # Ejercicio 5
