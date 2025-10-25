@@ -64,7 +64,7 @@ No se puede utilizar la función Queue.qsize().
 Comparar el resultado con la implementación utilizando una pila en lugar de una cola.
 '''
 
-def cantiadad_elementos_cola(c: Cola) -> int:
+def cantidad_elementos_cola(c: Cola) -> int:
     res: int = 0
     cCopia: Cola = Cola()
     while not c.empty():
@@ -83,7 +83,7 @@ cola.put(3)
 cola.put(4)
 cola.put(5)
 
-cantiadad_elementos_cola(cola)
+cantidad_elementos_cola(cola)
 print("Cola de verdad", imprimir_cola(cola))
 
 
@@ -228,6 +228,38 @@ bolillero}
 }
 '''
 
+def armar_secuencia_de_bingo() -> Cola[int]:
+    res: Cola[int] = Cola()
+    lista_de_numeros: list[int] = list(range(100))
+    random.shuffle(lista_de_numeros)
+
+    for numero in lista_de_numeros:
+        res.put(numero)
+        
+    return res
+
+print("Cola del bingo", imprimir_cola(armar_secuencia_de_bingo()))
+
+def jugar_carton_de_bingo(carton: list[int], bolillero: Cola[int]) -> int:
+    res: int = 0
+    carton_marcado: list[int] = list(carton)
+    jugadas_totales: int = 0
+    bolilleroCopia: Cola[int] = Cola() 
+    while not bolillero.empty():
+        numero: int = bolillero.get()  
+        jugadas_totales += 1
+        if res == 0:
+            if numero in carton_marcado:
+                carton_marcado.remove(numero)
+                if len(carton_marcado) == 0:
+                    res = jugadas_totales
+        bolilleroCopia.put(numero)
+    while not bolilleroCopia.empty():
+        bolillero.put(bolilleroCopia.get())
+    return res
+
+carton:list[int]= [10,3,65,73,2,17,9,43,77,1,88,99]
+print("El numero de jugadas minimo es:", jugar_carton_de_bingo(carton, armar_secuencia_de_bingo()))
 
 
 # Ejercicio 14
