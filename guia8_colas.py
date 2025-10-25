@@ -98,6 +98,30 @@ asegura: {res es mayor o igual a todos los elementos de c}
 Comparar con la versión usando pila.
 '''
 
+def buscar_el_maximo(c: Cola[int]) -> int:
+    res: int = c.get()
+    cCopia: Cola[int] = Cola()
+    cCopia.put(res)
+    while not c.empty():
+        elem: int = c.get()
+        if elem > res:
+            res = elem
+        cCopia.put(elem)
+    while not cCopia.empty():
+        c.put(cCopia.get())
+    print("Cola antes de salir", imprimir_cola(c))
+    return res
+c: Cola[int] = Cola()
+c.put(0)
+c.put(10)
+c.put(1)
+c.put(80)
+c.put(45)
+
+print("Cola antes de entrar a la funcion", imprimir_cola(c))
+print("El maximo de la cola es:", buscar_el_maximo(c))
+print("Cola antes despues de la funcion", imprimir_cola(c))
+
 
 # Ejercicio 11
 '''
@@ -108,6 +132,8 @@ asegura: {res es una tupla de c}
 asegura: {No hay ningún elemento en c cuya segunda componente sea menor que la de res }
 }
 '''
+
+
 
 
 # Ejercicio 12
