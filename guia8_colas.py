@@ -63,6 +63,29 @@ No se puede utilizar la función Queue.qsize().
 Comparar el resultado con la implementación utilizando una pila en lugar de una cola.
 '''
 
+def cantiadad_elementos_cola(c: Cola) -> int:
+    res: int = 0
+    cCopia: Cola = Cola()
+    while not c.empty():
+        cCopia.put(c.get())
+        print(imprimir_cola(cCopia))
+        res+=1
+    while not cCopia.empty():
+        c.put(cCopia.get())
+        print("Cola c recomposicion", imprimir_cola(c))
+    return res
+
+cola: Cola = Cola()
+cola.put(1)
+cola.put(2)
+cola.put(3)
+cola.put(4)
+cola.put(5)
+
+cantiadad_elementos_cola(cola)
+print("Cola de verdad", imprimir_cola(cola))
+
+
 
 # Ejercicio 10
 
