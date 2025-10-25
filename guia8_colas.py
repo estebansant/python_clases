@@ -1,5 +1,6 @@
 # Parte 2: Colas
 from queue import Queue as Cola
+from typing import Tuple
 import random
 
 # Ejercicio 8
@@ -133,8 +134,29 @@ asegura: {No hay ningún elemento en c cuya segunda componente sea menor que la 
 }
 '''
 
+def buscar_nota_minima(c: Cola[Tuple[str,int]]) -> Tuple[str,int]:
+    res: Tuple[str,int] = c.get()
+    cCopia: Cola[Tuple[str,int]] = Cola ()
+    cCopia.put(res)
+    while not c.empty():
+        elem: Tuple[str,int] = c.get()
+        if res[1] > elem[1]:
+            res = elem
+            print(res)
+        cCopia.put(elem)
+    while not cCopia.empty():
+        c.put(cCopia.get())
+    print("Cola antes de salir de la funcion", imprimir_cola(c))
+    return res
 
+notas: Cola[Tuple[str,int]] = Cola()
+notas.put(("Alfredo", 10))
+notas.put(("Nicolas", 8))
+notas.put(("Jaime", 3))
+notas.put(("Roberto", 5))
 
+print("Cola antes de entrar a la funcion", imprimir_cola(notas))
+print("La nota minima es:", buscar_nota_minima(notas))
 
 # Ejercicio 12
 '''
