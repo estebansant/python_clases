@@ -1,4 +1,6 @@
 # Parte 2: Colas
+from queue import Queue as Cola
+import random
 
 # Ejercicio 8
 '''
@@ -22,6 +24,32 @@ cola
 desencolo
 true si y solo si la cola est á vac ı́ a
 '''
+def imprimir_cola(cola: Cola) -> list:
+    elementos: list = []
+    cola_copia: Cola = Cola()
+    
+    # Primera pasada: Vaciar la original, guardar en lista y en copia
+    while not cola.empty():
+        elemento = cola.get()
+        elementos.append(elemento)
+        cola_copia.put(elemento)
+        
+    # Segunda pasada: Restaurar la cola original
+    while not cola_copia.empty():
+        cola.put(cola_copia.get())
+        
+    return elementos
+
+def generar_numeros_al_azar(cantidad:int, desde:int, hasta: int) -> Cola[int]:
+    res: Cola[int] = Cola()
+    cont: int = 0
+    while cont< cantidad:
+        res.put(random.randint(desde,hasta))
+        cont += 1
+    print(imprimir_cola(res))
+    return res
+
+print("Numeros al azar", imprimir_cola(generar_numeros_al_azar(10,1,100)))
 
 
 
