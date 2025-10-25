@@ -169,6 +169,43 @@ asegura: {El tamaño de res es igual al doble del tamaño de c1}
 }
 '''
 
+def intercalar(c1: Cola, c2: Cola) -> Cola:
+    res: Cola = Cola()
+    c1Copia: Cola = Cola()
+    c2Copia: Cola = Cola()
+    while not c1.empty():
+        c1Copia.put(c1.get())
+    while not c2.empty():
+        c2Copia.put(c2.get())
+    cont: int = 0
+    while (not c1Copia.empty()) or (not c2Copia.empty()):
+        if cont%2==0:
+            elem = c1Copia.get()
+            res.put(elem)
+            c1.put(elem)
+        else:
+            item = c2Copia.get()
+            res.put(item)
+            c2.put(item)
+        cont +=1
+    print("C1 al finalizar el bucle", imprimir_cola(c1))
+    print("C2 al finalizar el bucle", imprimir_cola(c2))
+    return res
+
+c1: Cola[int] = Cola()
+c2: Cola[str] = Cola()
+c1.put(1)
+c1.put(2)
+c1.put(3)
+c1.put(4)
+c2.put("H")
+c2.put("o")
+c2.put("l")
+c2.put("a")
+
+print("C1 original", imprimir_cola(c1))
+print("C2 original", imprimir_cola(c2))
+print("Resultado de intercalar colas C1 y C2", imprimir_cola(intercalar(c1,c2)))
 
 
 
