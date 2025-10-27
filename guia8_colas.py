@@ -297,8 +297,6 @@ pacientes.put((7,"Strauss", "Traumatologo"))
 
 print("El numero de pacientes urgentes a atender es:", pacientes_urgentes(pacientes))
 
-
-
 # Ejercicio 15
 '''
 Ejercicio 15. La gerencia de un banco nos pide modelar la atención de los clientes usando una cola donde se van registrando
@@ -312,3 +310,41 @@ bancaria preferencial y por último el resto. Dentro de cada subgrupo de cliente
 da la cola de ingreso de clientes al banco devuelve la cola en la que van a ser atendidos.
 '''
 
+def atencion_a_clientes(c: Cola[tuple[str,int,bool,bool]]) -> Cola[tuple[str,int,bool,bool]]:
+    res: Cola[tuple[str,int,bool,bool]] = Cola()
+    cCopia: Cola[tuple[str,int,bool,bool]] = Cola()
+    cSuperPrioridad: Cola[tuple[str,int,bool,bool]] = Cola()
+    cPrioridad: Cola[tuple[str,int,bool,bool]] = Cola()
+    cPreferencial: Cola[tuple[str,int,bool,bool]] = Cola()
+    cComun: Cola[tuple[str,int,bool,bool]] = Cola()
+    while not c.empty():
+        persona: tuple[str,int,bool,bool] = c.get()
+        cCopia.put(persona)
+        if (persona[2] == True) and (persona[3] == True):
+            cSuperPrioridad.put(persona)
+        elif (persona[3] == True):
+            cPrioridad.put(persona)
+        elif (persona[2] == True):
+            cPreferencial.put(persona)
+        else:
+            cComun.put(persona)
+    while not cCopia.empty():
+        c.put(cCopia.get())
+    while not cSuperPrioridad.empty():
+        res.put(cSuperPrioridad.get())
+    while not cPrioridad.empty():
+        res.put(cPrioridad.get())
+    while not cPreferencial.empty():
+        res.put(cPreferencial.get())
+    while not cComun.empty():
+        res.put(cComun.get())
+    print("Res dentro de la funcion", imprimir_cola(res))
+    return res
+
+lista_de_clientes: Cola[tuple[str,int,bool,bool]] = Cola()
+lista_de_clientes.put(("John", 18567142, True, False))
+lista_de_clientes.put(("Amanda", 18567192, False, False))
+lista_de_clientes.put(("Miranda", 18567191, True, True))
+lista_de_clientes.put(("Ricardo", 18567193, False, True))
+
+print("El orden de atencion es:", imprimir_cola(atencion_a_clientes(lista_de_clientes)))
