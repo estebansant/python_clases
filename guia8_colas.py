@@ -274,6 +274,29 @@ asegura: {res es la cantidad de elementos de c que tienen como primer componente
 }
 '''
 
+def pacientes_urgentes(c: Cola[tuple[int,str,str]]) -> int:
+    res: int = 0
+    cCopia: Cola[tuple[int,str,str]] = Cola()
+    while not c.empty():
+        paciente: tuple[int,str,str] = c.get()
+        cCopia.put(paciente)
+        if paciente[0] < 4:
+            res +=1
+    while not cCopia.empty():
+        c.put(cCopia.get())
+    return res
+
+pacientes: Cola[tuple[int,str,str]] = Cola()
+pacientes.put((1,"Pepe", "Traumatologo"))
+pacientes.put((3,"John", "Traumatologo"))
+pacientes.put((2,"Doe", "Traumatologo"))
+pacientes.put((9,"Jane", "Traumatologo"))
+pacientes.put((5,"Wilde", "Traumatologo"))
+pacientes.put((4,"Rick", "Traumatologo"))
+pacientes.put((7,"Strauss", "Traumatologo"))
+
+print("El numero de pacientes urgentes a atender es:", pacientes_urgentes(pacientes))
+
 
 
 # Ejercicio 15
