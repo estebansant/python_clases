@@ -179,6 +179,22 @@ No es necesario importar Union, ya que se puede usar el operador | para represen
 mi diccionario: dict[str, int | float]
 '''
 
+def agregar_producto(inventario: dict[str, dict[str,int | float]], nombre:str, precio: float, cantidad:int) -> None:
+    inventario[nombre] = {
+        "precio": precio,
+        "cantidad": cantidad
+    }
+
+inventario: dict[str, dict[str,int | float]] = {
+    "remera": {
+        "precio": 999.99,
+        "cantidad": 3
+    }
+}
+
+agregar_producto(inventario, "pantalon", 19999.99, 10)
+print(inventario)
+
 # Ejercicio 18.2
 '''
 2. problema actualizar stock (inout inventario: Diccionario ⟨ seq⟨Char⟩, Diccionario⟨ seq⟨Char⟩, T ⟩⟩, in nombre: seq⟨Char⟩,
@@ -195,7 +211,15 @@ cantidad}
 }
 '''
 
+def actualizar_stock(inventario:dict[str,dict[str,int|float]], nombre:str, cantidad:int) -> None:
+    elemento: dict[str, int | float] = inventario[nombre]
+    elemento["cantidad"] = cantidad
 
+    inventario[nombre] = elemento
+
+
+actualizar_stock(inventario, "pantalon", 8)
+print("Stock actualizado", inventario)
 # Ejercicio 18.3
 '''
 3. problema actualizar precio (inout inventario: Diccionario⟨ seq⟨Char⟩, Diccionario⟨ seq⟨Char⟩, T ⟩⟩, in nombre:seq⟨Char⟩,
@@ -212,6 +236,16 @@ precio}
 }
 '''
 
+def actualizar_precio(inventario:dict[str,dict[str,int|float]], nombre:str, precio:float) -> None:
+    elemento: dict[str, int | float] = inventario[nombre]
+    elemento["precio"] = precio
+
+    inventario[nombre] = elemento
+
+
+actualizar_precio(inventario, "remera", 10500.0)
+print("Precio actualizado", inventario)
+
 # Ejercicio 18.4
 '''
 4. problema calcular valor inventario (in inventario: Diccionario ⟨ seq⟨Char⟩, Diccionario ⟨ seq⟨Char⟩, T ⟩⟩) : R {
@@ -227,3 +261,13 @@ actualizar_stock(inventario, "Camisa", 10)
 valor_total = calcular_valor_inventario(inventario)
 print("Valor total del inventario:", valor_total) # Deberı́a imprimir 1100.0
 '''
+
+def calcular_valor_inventario(inventario:dict[str, dict[str, int | float]]) -> float:
+    res: float = 0
+    for elemento in inventario:
+        adentro: dict[str, int | float] = inventario[elemento]
+        precio: float = adentro["precio"]
+        res += precio
+    return res
+
+print("El precio del inventario es", calcular_valor_inventario(inventario))
