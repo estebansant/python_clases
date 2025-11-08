@@ -78,7 +78,7 @@ def cambiar_matriz(A:list[list[int]]) -> None:
         for i in range(len(A)):
             for j in range(len(i)):
                 print(A)
-                reordenar_filas_par_a_par(A[i][j], A[i][(j+1)%len(A)]) # Me va a generar muchos problemas. Le agregao modulo de longitud para que en el ultimo valor i de la matriz, vuelvo al principio de A. Usar A[i+1] se pasa de la longitud de A. La misma logica aplica para en vez de modificar las columnas, modificar las filas. Toca aplicar la logica usando esta nueva forma de pensar la matriz. Lo mejor es intercambiar las filas.
+                reordenar_filas_par_a_par(A[i][j], A[i][(j+1)%len(A)]) # Me va a generar muchos problemas. Le agrego modulo de longitud para que en el ultimo valor i de la matriz, vuelvo al principio de A. Usar A[i+1] se pasa de la longitud de A. La misma logica aplica para en vez de modificar las columnas, modificar las filas. Toca aplicar la logica usando esta nueva forma de pensar la matriz. Lo mejor es intercambiar las filas.
     elif len(A) == 1:
         print(A)
         A.append(reordenar_fila(A[0]))

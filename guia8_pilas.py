@@ -21,7 +21,7 @@ elemento = p . get () # desapila
 p . empty () # devuelve true si y solo si la pila est á vac ı́ a
 '''
 
-def imprimir_pila(pila: Pila) -> list[int]:
+def imprimir_pila(pila: Pila) -> list:
     res: list[int] = []
     pilaCopy: Pila = Pila()
     while not pila.empty():

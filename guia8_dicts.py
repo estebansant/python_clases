@@ -1,3 +1,4 @@
+from queue import LifoQueue as Pila
 # Parte 3: Dicts
 
 # EJercicio 16
@@ -17,14 +18,52 @@ notas: list[tuple[str, float]] = [("Sole", 9.5), ("Maxi", 8.0), ("Sole", 9.0)]
 calcular promedio por estudiante(notas) debe devolver {"Sole": 9.25, "Maxi": 8.0}
 '''
 
+def calcular_promedio_por_estudiante(notas: list[tuple[str,float]]) -> dict[str,float]:
+    res: dict[str,float]= {}
+    registro: dict[str, list[float]] = {}
+    for estudiante, nota in notas:
+        if estudiante in registro:
+            registro[estudiante].append(nota)
+        else:
+            registro[estudiante] = [nota]
+
+    print(registro)
+
+    for estudiante in registro:
+        suma_notas: float = 0
+        for nota in registro[estudiante]:
+            suma_notas += nota
+
+        res[estudiante] = suma_notas/len(registro[estudiante])
+
+    return res
+
+print(calcular_promedio_por_estudiante([("Maria", 10), ("Juan", 6), ("Mateo", 7), ("Juan", 8), ("Rodolfo", 2), ("Mateo", 5)]))
+
 
 # Ejercicio 17
 '''
 Ejercicio 17. Se debe desarrollar un navegador web muy simple que debe llevar un registro de los sitios web visitados por los
 usuarios del sistema. El navegador debe permitir al usuario navegar hacia atrás en la historia de navegación.
+
 1. Crea un diccionario llamado historiales que almacenará el historial de navegación para cada usuario. Las claves del
 diccionario serán los nombres de usuario y los valores serán pilas de String.
+'''
 
+pila_juan: Pila[str] = Pila()
+pila_juan.put("google.com")
+pila_juan.put("amazon.com")
+
+pila_julio: Pila[str] = Pila()
+pila_julio.put("instagram.com")
+pila_julio.put("facebook.com")
+
+historiales: dict[str,Pila[str]] = {
+    "Juan": pila_juan,
+    "Julio": pila_julio
+}
+
+'''
 2. Implementar una solución para el siguiente problema.
 problema visitar sitio (inout historiales: Diccionario⟨seq⟨Char⟩, P ila[seq⟨Char⟩]⟩, in usuario: seq⟨Char⟩, in sitio: seq⟨Char⟩)
 {
@@ -38,7 +77,41 @@ asegura: {Todos los pares clave-valor de historiales@pre están en historiales}
 asegura: {Todos los pares clave-valor de historiales están en historiales@pre, salvo historiales[usuario] que podrı́a
 no existir en historiales@pre}
 }
+'''
 
+def imprimir_pila(pila: Pila) -> list:
+    res: list[int] = []
+    pilaCopy: Pila = Pila()
+    while not pila.empty():
+        item = pila.get()
+        res.append(item) 
+        pilaCopy.put(item)
+    while not pilaCopy.empty():
+        pila.put(pilaCopy.get())
+    return res
+
+def visitar_sitio(historiales: dict[str, Pila[str]], usuario:str, sitio:str) -> None:
+    if usuario in historiales.keys():
+        historiales[usuario].put(sitio)
+    else:
+        historiales[usuario]: Pila[str] = Pila()
+        historiales[usuario].put(sitio)
+
+def imprimir_dict(historiales):
+    for usuario, value in historiales.items():
+        contenido_pila = imprimir_pila(value)
+        print(f"{usuario}: {contenido_pila}")
+
+visitar_sitio(historiales, "Juan", "ikea.com")
+print("Juan visita Ikea")
+imprimir_dict(historiales)
+visitar_sitio(historiales, "Amalia", "ikea.com")
+print("Aparece Amalia")
+imprimir_dict(historiales)
+
+
+
+'''
 3. Implementar una solución para el siguiente problema.
 problema navegar atras (inout historiales: Diccionario⟨ seq⟨Char⟩, Pila[ seq⟨Char⟩, in usuario: seq⟨Char⟩⟩) : seq⟨Char⟩
 {
@@ -50,14 +123,23 @@ asegura: {historiales[usuario] es igual a historiales@pre[usuario] quitando el t
 historiales@pre[usuario]}
 asegura: {En historiales, salvo la pila asociada a usuario, no se modifica ningún otro por clave-valor}
 }
-
-
-historiales = {}
-visitar_sitio(historiales, "Usuario1", "google.com")
-visitar_sitio(historiales, "Usuario1", "facebook.com")
-navegar_atras(historiales, "Usuario1")
-visitar_sitio(historiales, "Usuario2", "youtube.com")
 '''
+
+def navegar_atras(historiales: dict[str, Pila[str]], usuario: str) -> str:
+    res: str = ""
+    if usuario in historiales:
+        res = historiales[usuario].get()
+    return res
+
+print("Sitio del que sale Juan:", navegar_atras(historiales, "Juan"))
+print("Juan deja Ikea")
+imprimir_dict(historiales)
+
+navegar_atras(historiales, "Amalia")
+imprimir_dict(historiales)
+historiales.pop("Amalia")
+imprimir_dict(historiales)
+
 
 
 # Ejercicio 18.1
