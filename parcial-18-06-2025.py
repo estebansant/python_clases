@@ -50,7 +50,10 @@ def imprimir_pila(pila: Pila) -> list:
   res: list = []
   copiaPila: Pila = Pila ()
   while not pila.empty():
-    copiaPila.put(pila.get())
+    elemento = pila.get()
+    copiaPila.put(elemento)
+    # res.append(elemento)
+
   while not copiaPila.empty():
     elemento = copiaPila.get()
     pila.put(elemento)
@@ -83,7 +86,7 @@ examenes.put(("Carlos", 0))
 examenes.put(("Mariana", 2))
 examenes.put(("Perez", 0))
 
-print(imprimir_pila(examenes))
+print("PILA DE EXAMENES", imprimir_pila(examenes))
 print(primera_etrega_en_blanco(examenes))
 
 
